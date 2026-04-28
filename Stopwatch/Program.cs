@@ -48,7 +48,10 @@ namespace Stopwatch
             }
             else
             {
-                timeSpan += StopTime.Subtract(StartTime);
+                // In case it is continuous stop watch
+                //timeSpan += StopTime.Subtract(StartTime);
+                // In case it is seperatly each time started and stopped
+                timeSpan = StopTime.Subtract(StartTime);
                 Console.WriteLine($"Total duration is {timeSpan.Days} Days - {timeSpan.Hours} Hours - {timeSpan.Minutes} Mintues - {timeSpan.Seconds} seconds");
                 Console.WriteLine($"\nTotal duration is {timeSpan.TotalSeconds} Seconds");
             }
