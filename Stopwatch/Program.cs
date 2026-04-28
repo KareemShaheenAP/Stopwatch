@@ -4,8 +4,8 @@ namespace Stopwatch
 {
     public class StopWatch
     {
-        private DateTime StartTime = DateTime.Now;
-        private DateTime StopTime = DateTime.Now;
+        private DateTime StartTime { get; set; }
+        private DateTime StopTime { get; set; }
         private TimeSpan timeSpan ;
         private bool started = false;
         private bool stopped = true;
@@ -42,10 +42,15 @@ namespace Stopwatch
             {
                 Console.WriteLine("Please stop stopwatch first");
             }
+            else if (timeSpan.TotalSeconds == 0)
+            {
+                Console.WriteLine("Please start then stop stopwatch to get total duration");
+            }
             else
             {
                 timeSpan += StopTime.Subtract(StartTime);
-                Console.WriteLine($"Total duration is {timeSpan.Hours} Hours - {timeSpan.Minutes} Mintues - {timeSpan.Seconds} seconds");
+                Console.WriteLine($"Total duration is {timeSpan.Days} Days - {timeSpan.Hours} Hours - {timeSpan.Minutes} Mintues - {timeSpan.Seconds} seconds");
+                Console.WriteLine($"\nTotal duration is {timeSpan.TotalSeconds} Seconds");
             }
         }
     }
