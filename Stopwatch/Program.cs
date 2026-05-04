@@ -4,45 +4,43 @@ namespace Stopwatch
 {
     public class StopWatch
     {
-        private DateTime StartTime { get; set; }
-        private DateTime StopTime { get; set; }
-        private TimeSpan timeSpan ;
-        private bool started = false;
-        private bool stopped = true;
-        public void StopTimer()
+        public DateTime StartTime { get; private set; }
+        public DateTime StopTime { get; private set; }
+        public TimeSpan timeSpan { get; private set; }
+        public bool StopWatchSTatus = false;
+        public void StartTimer() //set True
         {
-            if (stopped) 
-            {
-                Console.WriteLine("Stopwatch already stopped");
-            }
-            else
-            {
-                stopped = true;
-                started = false;
-                StopTime = DateTime.Now;
-            }
-        }
-        public void StartTimer()
-        {
-            if (started)
+            if (StopWatchSTatus)
             {
                 Console.WriteLine("Stopwatch already started");
             }
             else
             {
-                stopped = false;
-                started= true;
+                StopWatchSTatus = true;
+                Console.WriteLine("Stopwatch started");
                 StartTime = DateTime.Now;
             }
-            
+        }
+        public void StopTimer() //set false
+        {
+            if (!StopWatchSTatus) 
+            {
+                Console.WriteLine("Stopwatch already stopped");
+            }
+            else
+            {
+                StopWatchSTatus = false;
+                Console.WriteLine("Stopwatch stopped");
+                StopTime = DateTime.Now;
+            }
         }
         public void TimeInterval()
         {
-            if (!stopped)
+            if (StopWatchSTatus)
             {
                 Console.WriteLine("Please stop stopwatch first");
             }
-            else if (timeSpan.TotalSeconds == 0)
+            else if (timeSpan.TotalSeconds == 0 && StopTime == StartTime)
             {
                 Console.WriteLine("Please start then stop stopwatch to get total duration");
             }
